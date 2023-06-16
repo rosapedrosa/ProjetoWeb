@@ -1,0 +1,22 @@
+{
+  "tarefas": [
+    {
+      "id": 1,
+      "titulo": "Cebolinha",
+      "descricao": "cão",
+      "prioridade": "Baixa"
+    },
+    {
+      "titulo": "Segunda",
+      "descricao": "Alguma descrição",
+      "prioridade": "baixa",
+      "id": 2
+    },
+    {
+      "titulo": "terceira",
+      "descricao": "Alguma descrição terceira",
+      "prioridade": "media",
+      "id": 3
+    }
+  ]
+} 
