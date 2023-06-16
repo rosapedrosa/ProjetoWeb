@@ -4,24 +4,30 @@ import './App.css'
 
 
 export default function Tarefas() {
-    function Tarefas() {
-        const [tarefas, setTarefas] = useState([])
+    const [tarefas, setTarefas] = useState([])
 
-        useEffect(() => {
-            fetch('http://localhost/tarefas/')
-                .then(resp => resp.json())
-                .then(data => {
-                    setTarefas(data)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        }, [])
-    }
-    // const MinhasTarefas = tarefas.map((p) => <h5 key={p.id}> {p.titulo}</h5> )
+    useEffect(() => {
+        fetch('http://localhost:3000/tarefas')
+            .then(resp => resp.json())
+            .then(data => {
+                setTarefas(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+    
+    const MinhasTarefas = tarefas.map((p) => 
+    <ul key={p.id}>
+    <h3>{p.titulo}</h3>
+    <p>{p.descricao}</p>
+    <p>Prioridade: {p.prioridade}</p>
+  </ul>)
     return (
-        <>  Tarefas
-            {/* {MinhasTarefas} */}
+        <>  
+        <h1>Tarefas</h1>
+         
+        {tarefas.length > 0 ? MinhasTarefas : <p>Carregando...</p>} 
         </> 
     )
 }

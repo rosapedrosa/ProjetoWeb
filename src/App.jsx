@@ -6,6 +6,7 @@ import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Link } from 'react-router-dom';
 
 function App() {
   const [titulo, setTitulo] = useState('')
@@ -48,12 +49,13 @@ function App() {
             <MenuItem value="">
               <em>Selecione</em>
             </MenuItem>
-            <MenuItem value="baixa">Baixa</MenuItem>
-            <MenuItem value="media">Media</MenuItem>
-            <MenuItem value="alta">Alta</MenuItem>
+            <MenuItem value="Baixa">Baixa</MenuItem>
+            <MenuItem value="Media">Media</MenuItem>
+            <MenuItem value="Alta">Alta</MenuItem>
           </Select >
+          <Link to="/">
           <Button type="submit" variant="contained">Enviar</Button>
-
+          </Link>
 
         </Stack>
       </form>
