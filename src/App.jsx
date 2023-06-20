@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-import { Stack, TextField, MenuItem, InputLabel } from '@mui/material';
-import { Button } from '@mui/base';
+import { Stack, TextField, MenuItem, InputLabel, AppBar, Toolbar} from '@mui/material';
+import { Button } from '@mui/material';
 import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -21,18 +21,32 @@ function App() {
     fetch('http://localhost:3000/tarefas/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ titulo, descricao, prioridade})
+      body: JSON.stringify({ titulo, descricao, prioridade, dataEvento})
     }).then(() => {
       console.log("Nova tarefa adicionada")
+      alert("Concluido")
     }).catch((erro) => {
       console.log(erro)
     })
 
 }
 
+function ajeitaData(data) {
+  const mes = parseInt(data.$M) + 1
+  const novaData = data.$D + "/" + mes + "/" + data.$y
+  //console.log(novaData)
+  setDataEvento(novaData)
+}
+
 
   return (
     <>
+     <AppBar>
+        <Toolbar variant="dense">
+          <Link to="/">Inicio</Link>
+          <Link to="/">Dasboard</Link>
+        </Toolbar>
+      </AppBar> 
 
       <h1>Nova Tarefa</h1>
       <form onSubmit={handleSubmit}>
@@ -42,7 +56,7 @@ function App() {
             rows={4} onChange={(e) => setDescricao(e.target.value)} />
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker id="dataEvento" />
+            <DatePicker id="dataEvento" onChange={(newValue) => ajeitaData(newValue)}/>
           </LocalizationProvider>
 
           <Select id="prioridade" label="Prioridade" onChange={(e) => setPrioridade(e.target.value)}>
@@ -53,14 +67,17 @@ function App() {
             <MenuItem value="Media">Media</MenuItem>
             <MenuItem value="Alta">Alta</MenuItem>
           </Select >
-          <Link to="/">
+    
           <Button type="submit" variant="contained">Enviar</Button>
-          </Link>
+          
 
         </Stack>
       </form>
     </>
   )
+
+;
+
 }
 
 export default App
