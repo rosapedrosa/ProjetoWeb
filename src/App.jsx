@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import './App.css';
-import { Stack, TextField, MenuItem, InputLabel, AppBar, Toolbar} from '@mui/material';
+import { Stack, TextField, MenuItem, AppBar, Toolbar, Typography, InputAdornment} from '@mui/material';
 import { Button } from '@mui/material';
 import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Link } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './theme'; 
+
+
+
 
 function App() {
   const [titulo, setTitulo] = useState('')
   const [descricao, setDescricao] = useState('')
   const [prioridade, setPrioridade] = useState('')
   const [dataEvento, setDataEvento] = useState('')
-
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -41,12 +45,25 @@ function ajeitaData(data) {
 
   return (
     <>
-     <AppBar>
-        <Toolbar variant="dense">
-          <Link to="/">Inicio</Link>
-          <Link to="/">Dasboard</Link>
+    <ThemeProvider theme={theme}>
+    <AppBar>
+        <Toolbar>
+        <Link to="/">HOME</Link>
+          <Link to="/">DASBOARD</Link>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            logo
+         
+          </Typography>
+   
+        
         </Toolbar>
-      </AppBar> 
+      </AppBar>
+
 
       <h1>Nova Tarefa</h1>
       <form onSubmit={handleSubmit}>
@@ -73,6 +90,7 @@ function ajeitaData(data) {
 
         </Stack>
       </form>
+      </ThemeProvider>
     </>
   )
 

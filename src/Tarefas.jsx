@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Box from '@mui/material/Box'
 import { DataGrid } from '@mui/x-data-grid'
-import { AppBar, Toolbar} from "@mui/material"
+import { AppBar, Toolbar, Typography, Box, InputAdornment, TextField, Button, Stack} from "@mui/material"
 import { Link } from 'react-router-dom';
-
-
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './theme';
+import SearchIcon from '@mui/icons-material/Search';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { styled, Paper } from '@mui/material';
 
 export default function Tarefas() {
     const [tarefas, setTarefas] = useState([])
@@ -21,92 +23,89 @@ export default function Tarefas() {
             })
     }, [])
 
-    const columns = [
-        {
-            field: 'titulo',
-            headerName: 'Título',
-            type: 'object',
-            width: 150,
-            editable: true,
-        },
-        {
-            field: 'descricao',
-            headerName: 'Descrição',
-            width: 150,
-            editable: true,
-        },
-        {
-            field: 'dataEvento',
-            headerName: 'Data',
-            width: 150,
-            editable: true,
-        },
-        {
-            field: 'prioridade',
-            headerName: 'Prioridade',
-            width: 150,
-            editable: false,
-        },
-        {
-            field: 'botao',
-            headerName: '  ',
-            width: 150,
-            editable: false,
-        }
-    ];
-    const rows = [
-        {id: 1, titulo: 't', descricao: 'Jon', dataEvento: 35, prioridade: 'Baixa' },
-        ];
 
+;
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    maxWidth: 400,
+  }))
 
     const MinhasTarefas = tarefas.map((p) =>
-        <>            <ul key={p.id}>
-                <h3>{p.titulo}</h3>
-                <p>{p.descricao}</p>
-                <p>Prioridade: {p.prioridade}</p>
-                <p>Data: {p.dataEvento}</p>
-            </ul></>
+        <Box sx={{ width: '100%' }}>
+            <Item
+                sx={{
+                    my: 1,
+                    mx: 'auto',
+                    p: 4,
+                }}
+            >
+                <Stack direction="row"
+                    justifyContent="space-evenly"
+                    alignItems="flex-start"
+                    spacing={2}
+                >
+
+                    <Typography>
+
+
+                        <p> <h4>{p.titulo}</h4> {p.descricao} 
+                        <p>
+                            Prioridade: {p.prioridade} Data: {p.dataEvento}
+                            </p>
+
+
+                        </p>
+                    </Typography>
+                </Stack>
+                <Stack>
+                    <Button variant="contained" startIcon={<DeleteIcon />}>Excluir</Button>
+                </Stack>
+            </Item>
+        </Box>
     )
 
     // const Titulo = tarefas.map((t) => <h1>{t.titulo}</h1>)
 
     return (
         <>
-            <AppBar>
-                <Toolbar>
+            <ThemeProvider theme={theme}>
+                <AppBar>
+                    <Toolbar>
+                        <Link to="/novatarefa">NOVA TAREFA</Link>
+                        <Link to="/">DASBOARD</Link>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                        >
+                            <img href="/logo-rp.png" />
+                            MUI
+                        </Typography>
+                        <TextField
+                            placeholder="Pesquisar..."
+                            variant="outlined"
+                            size="small"
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
 
-                    <Link to="/">
-                        Inicio
-                    </Link>
-                    <Link to="/novatarefa">
-                        Nova Tarefa
-                    </Link>
-                    <Link to="/">
-                        Dasboard
-                    </Link>
+                    </Toolbar>
+                </AppBar>
 
-                </Toolbar>
-            </AppBar>
+                <h1>Tarefas</h1>
 
-            <h1>Tarefas</h1>
-
-            <Box sx={{ height: 400, width: '100%' }}>
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    initialState={{
-                        pagination: {
-                            paginationModel: {
-                                pageSize: 5,
-                            },
-                        },
-                    }}
-                    pageSizeOptions={[5]}
-                    checkboxSelection
-                    disableRowSelectionOnClick
-                />
-            </Box>
-            {tarefas.length > 0 ? MinhasTarefas : <p>Carregando...</p>}
+                {tarefas.length > 0 ? MinhasTarefas : <p>Carregando...</p>}
+            </ThemeProvider>
         </>
     )
 }
