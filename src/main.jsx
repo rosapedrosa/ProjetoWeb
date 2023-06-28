@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import Tarefas from './Tarefas.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Dashboard from './Dashboard.jsx'
 
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
   path: "/novatarefa/:id",
   element: <App />
+  },
+  {
+  path: "/dashboard",
+  element: <Dashboard />
   }
 ])
 

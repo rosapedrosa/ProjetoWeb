@@ -84,7 +84,7 @@ function App() {
           <Toolbar>
             <Box sx={{ marginRight: '16px' }}>
               <Link to="/" >HOME</Link></Box>
-            <Link to="/">DASHBOARD</Link>
+            <Link to="/dashboard">DASHBOARD</Link>
             <Typography
               variant="h6"
               noWrap

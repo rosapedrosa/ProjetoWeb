@@ -112,7 +112,7 @@ export default function Tarefas() {
                     <Toolbar>
                         <Box sx={{ marginRight: '16px' }}>
                             <Link to="/novatarefa" sx={{ marginRight: '50px' }}>NOVA TAREFA</Link></Box>
-                        <Link to="/">DASHBOARD</Link>
+                        <Link to="/dashboard">DASHBOARD</Link>
                         <Typography
                             variant="h6"
                             noWrap
