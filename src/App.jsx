@@ -110,8 +110,8 @@ function App() {
               <DatePicker id="dataEvento" onChange={(newValue) => ajeitaData(newValue)} />
             </LocalizationProvider>
 
-            <Select id="prioridade" label="Prioridade" onChange={(e) => setPrioridade(e.target.name)}>
-              <MenuItem value=" ">
+            <Select id="prioridade" label="Prioridade" onChange={(e) => setPrioridade(e.target.value)}>
+              <MenuItem value="">
                 <em>Selecione</em>
               </MenuItem>
               <MenuItem value='Baixa'>Baixa</MenuItem>
