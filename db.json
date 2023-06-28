@@ -1,102 +1,39 @@
 {
   "tarefas": [
     {
-      "id": 1,
-      "titulo": "Primeira",
-      "descricao": "Primeira descrição",
-      "prioridade": "Baixa"
-    },
-    {
-      "titulo": "Segunda",
-      "descricao": "Alguma descrição",
-      "prioridade": "baixa",
-      "id": 2
-    },
-    {
-      "titulo": "terceira",
-      "descricao": "Alguma descrição terceira",
-      "prioridade": "media",
+      "titulo": "Terceira",
+      "descricao": "Descrição",
+      "prioridade": "Alta",
+      "dataEvento": "28/6/2023",
       "id": 3
     },
     {
-      "titulo": "Segunda de teste",
-      "descricao": "Realizando varios teste",
-      "prioridade": "media",
+      "titulo": "Aula de Web1",
+      "descricao": "Assunto: React ",
+      "dataEvento": "27/6/2023",
       "id": 4
     },
     {
-      "titulo": "Totvs",
-      "descricao": "D",
-      "prioridade": "Baixa",
+      "titulo": "Projeto Web",
+      "descricao": "Apresentação dos projetos",
+      "dataEvento": "29/6/2023",
       "id": 5
+    }
+  ],
+
+
+  "pets": [
+    {
+      "id": 1,
+      "nome": "Cebolinha",
+      "especie": "Cão",
+      "idade": 15
     },
     {
-      "titulo": "Teste",
-      "descricao": "Descrição teste",
-      "prioridade": "Alta",
-      "id": 6
-    },
-    {
-      "titulo": "Teste",
-      "descricao": "teste",
-      "prioridade": "Baixa",
-      "id": 7
-    },
-    {
-      "titulo": "OLá",
-      "descricao": "Teste olá",
-      "prioridade": "Media",
-      "dataEvento": "",
-      "id": 8
-    },
-    {
-      "titulo": "",
-      "descricao": "",
-      "prioridade": "",
-      "dataEvento": "",
-      "id": 9
-    },
-    {
-      "titulo": "",
-      "descricao": "",
-      "prioridade": "",
-      "dataEvento": "",
-      "id": 10
-    },
-    {
-      "titulo": "teste",
-      "descricao": "teste",
-      "prioridade": "Media",
-      "dataEvento": "",
-      "id": 11
-    },
-    {
-      "titulo": "teste",
-      "descricao": "teste",
-      "prioridade": "Media",
-      "dataEvento": "",
-      "id": 12
-    },
-    {
-      "titulo": "teste",
-      "descricao": "teste",
-      "prioridade": "Baixa",
-      "dataEvento": "",
-      "id": 13
-    },
-    {
-      "titulo": "fgbe",
-      "descricao": "gbryjy",
-      "prioridade": "Baixa",
-      "dataEvento": "28/6/2023",
-      "id": 14
-    },
-    {
-      "titulo": "OLá",
-      "descricao": "Uma descriçãa sobre minha atividade",
-      "prioridade": "Alta",
-      "dataEvento": "22/6/2023",
-      "id": 15
+      "id": 2,
+      "nome": "Cascão",
+      "especie": "Gato",
+      "idade": 4
     }
   ]
 }

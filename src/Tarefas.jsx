@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { DataGrid } from '@mui/x-data-grid'
-import { AppBar, Toolbar, Typography, Box, InputAdornment, TextField, Button, Stack} from "@mui/material"
+import { AppBar, Toolbar, Typography, Box, InputAdornment, TextField, Button, Stack } from "@mui/material"
 import { Link } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { styled, Paper } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom'
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function Tarefas() {
     const [tarefas, setTarefas] = useState([])
+    const [pesquisa, setPesquisa] = useState('')
+    const [tarefasFiltradas, setTarefasFiltradas] = useState([])
+    const [tarefaEditada, setTarefaEditada] = useState(null);
+    const navigate = useNavigate()
+    const { id } = useParams()
 
     useEffect(() => {
         fetch('http://localhost:3000/tarefas')
@@ -24,18 +31,47 @@ export default function Tarefas() {
     }, [])
 
 
-;
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    maxWidth: 400,
-  }))
+    function handleExcluirTarefa(id) {
+        fetch('http://localhost:3000/tarefas/' + id, {
+            method: 'DELETE'
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(id)
+                setTarefas(tarefas.filter(tarefa => tarefa.id !== id))
+                navigate('/')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    };
+
+    function handleEdit(id) {
+        const tarefaSelecionada = tarefas.find(tarefa => tarefa.id === id);
+        setTarefaEditada(tarefaSelecionada);
+        navigate('/novatarefa/' + id);
+      }
+
+
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+        maxWidth: 400,
+    }))
+
+    useEffect(() => {
+        // Código existente para obter as tarefas
+
+        // Filtrar as tarefas com base na pesquisa
+        const tarefasFiltradas = tarefas.filter(tarefa => tarefa.titulo.includes(pesquisa))
+        setTarefasFiltradas(tarefasFiltradas)
+    }, [tarefas, pesquisa])
 
     const MinhasTarefas = tarefas.map((p) =>
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%' }} key={p.id}>
             <Item
                 sx={{
                     my: 1,
@@ -50,41 +86,38 @@ const Item = styled(Paper)(({ theme }) => ({
                 >
 
                     <Typography>
+                        <span style={{ fontSize: '25px' }}>{p.titulo}</span>
+                        <br />
+                        <span>{p.descricao}</span>
+                        <br />
+                        <span>Prioridade: {p.prioridade}</span>
+                        <br />
+                        <span>Data: {p.dataEvento}</span>
 
-
-                        <p> <h4>{p.titulo}</h4> {p.descricao} 
-                        <p>
-                            Prioridade: {p.prioridade} Data: {p.dataEvento}
-                            </p>
-
-
-                        </p>
                     </Typography>
                 </Stack>
-                <Stack>
-                    <Button variant="contained" startIcon={<DeleteIcon />}>Excluir</Button>
+                <Stack spacing={1}>
+                    <Button onClick={() => handleExcluirTarefa(p.id)} variant="contained" startIcon={<DeleteIcon />}>Excluir</Button>
+                    <Button onClick={() => handleEdit(p.id)} color="secondary" variant="contained" startIcon={<EditIcon />}>Editar</Button>
                 </Stack>
             </Item>
         </Box>
     )
 
-    // const Titulo = tarefas.map((t) => <h1>{t.titulo}</h1>)
 
     return (
         <>
             <ThemeProvider theme={theme}>
                 <AppBar>
                     <Toolbar>
-                        <Link to="/novatarefa">NOVA TAREFA</Link>
-                        <Link to="/">DASBOARD</Link>
+                        <Box sx={{ marginRight: '16px' }}>
+                            <Link to="/novatarefa" sx={{ marginRight: '50px' }}>NOVA TAREFA</Link></Box>
+                        <Link to="/">DASHBOARD</Link>
                         <Typography
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                        >
-                            <img href="/logo-rp.png" />
-                            MUI
+                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
                         </Typography>
                         <TextField
                             placeholder="Pesquisar..."
@@ -97,14 +130,49 @@ const Item = styled(Paper)(({ theme }) => ({
                                     </InputAdornment>
                                 ),
                             }}
-                        />
+
+                            onChange={(e) => setPesquisa(e.target.value)} />
 
                     </Toolbar>
                 </AppBar>
-
-                <h1>Tarefas</h1>
-
-                {tarefas.length > 0 ? MinhasTarefas : <p>Carregando...</p>}
+                <img src="/public/logo.png" alt="Logo" />
+                {tarefasFiltradas.length > 0 ? (
+                    tarefasFiltradas.map((p) => (
+                        <Box sx={{ width: '100%' }} key={p.id}>
+                            <Item
+                                sx={{
+                                    my: 1,
+                                    mx: 'auto',
+                                    p: 4,
+                                }}
+                            >
+                                <Stack direction="row" justifyContent="space-evenly" alignItems="flex-start" spacing={2}>
+                                    <Typography>
+                                        <span style={{ fontSize: '25px' }}>{p.titulo}</span>
+                                        <br />
+                                        <span>{p.descricao}</span>
+                                        <br />
+                                        <span>Prioridade: {p.prioridade}</span>
+                                        <br />
+                                        <span>Data: {p.dataEvento}</span>
+                                    </Typography>
+                                </Stack>
+                                <Stack spacing={1}>
+                                    <Button onClick={() => handleExcluirTarefa(p.id)} variant="contained" startIcon={<DeleteIcon />}>
+                                        Excluir
+                                    </Button>
+                                    <Button onClick={() => handleEdit(p.id)} color="secondary" variant="contained" startIcon={<EditIcon />}>
+                                        Editar
+                                    </Button>
+                                </Stack>
+                            </Item>
+                        </Box>
+                    ))
+                ) : tarefas.length > 0 ? (
+                    MinhasTarefas
+                ) : (
+                    <p>Carregando...</p>
+                )}
             </ThemeProvider>
         </>
     )

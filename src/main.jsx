@@ -12,8 +12,16 @@ const router = createBrowserRouter([
   element: <Tarefas />
 },
 {
+  path: "/:id",
+  element: <Tarefas />
+},
+{
   path: "/novatarefa",
   element:  <App />
+  },
+  {
+  path: "/novatarefa/:id",
+  element: <App />
   }
 ])
 
