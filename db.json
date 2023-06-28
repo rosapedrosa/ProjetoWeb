@@ -19,21 +19,7 @@
       "dataEvento": "29/6/2023",
       "id": 5
     }
-  ],
-
-
-  "pets": [
-    {
-      "id": 1,
-      "nome": "Cebolinha",
-      "especie": "Cão",
-      "idade": 15
-    },
-    {
-      "id": 2,
-      "nome": "Cascão",
-      "especie": "Gato",
-      "idade": 4
-    }
   ]
 }
+
+ 
