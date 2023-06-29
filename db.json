@@ -1,31 +1,32 @@
 {
   "tarefas": [
     {
-      "titulo": "Aula",
-      "descricao": "aua",
-      "prioridade": "Media",
-      "dataEvento": "2/6/2024",
-      "id": 4
-    },
-    {
-      "titulo": "ççç",
-      "descricao": "llll",
-      "prioridade": "Baixa",
-      "dataEvento": "29/6/2023",
-      "id": 5
-    },
-    {
-      "titulo": "Segunda",
-      "descricao": "mmm",
+      "titulo": "Projeto Web",
+      "descricao": "Apresentação do projeto da disciplina de desenvolvimento web 1.",
       "prioridade": "Alta",
-      "dataEvento": "16/6/2023",
-      "id": 7
+      "dataEvento": "3/7/2023",
+      "id": 1
     },
     {
-      "titulo": "Rosa Pedrosa",
-      "descricao": "rosa",
-      "dataEvento": "12/10/2023",
-      "id": 8
+      "titulo": "Aula CD",
+      "descricao": "Aula de Circuito Digitais - M34",
+      "prioridade": "Media",
+      "dataEvento": "3/7/2023",
+      "id": 2
+    },
+    {
+      "titulo": "Beber suco",
+      "descricao": "Lembrar de beber água.",
+      "prioridade": "Baixa",
+      "dataEvento": "30/6/2023",
+      "id": 3
+    },
+    {
+      "titulo": "Tarefa",
+      "descricao": "nova tarefa",
+      "prioridade": "Alta",
+      "dataEvento": "20/6/2023",
+      "id": 4
     }
   ]
 }

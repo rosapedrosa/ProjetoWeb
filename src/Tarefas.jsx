@@ -50,7 +50,7 @@ export default function Tarefas() {
         const tarefaSelecionada = tarefas.find(tarefa => tarefa.id === id);
         setTarefaEditada(tarefaSelecionada);
         navigate('/novatarefa/' + id);
-      }
+    }
 
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -111,8 +111,10 @@ export default function Tarefas() {
                 <AppBar>
                     <Toolbar>
                         <Box sx={{ marginRight: '16px' }}>
-                            <Link to="/novatarefa" sx={{ marginRight: '50px' }}>NOVA TAREFA</Link></Box>
-                        <Link to="/dashboard">DASHBOARD</Link>
+                            <Link to="/" >Inicio</Link> </Box>
+                        <Box sx={{ marginRight: '16px' }}>
+                            <Link to="/novatarefa" sx={{ marginRight: '50px' }}>Nova Tarefa</Link></Box>
+                        <Link to="/dashboard">Dashboard</Link>
                         <Typography
                             variant="h6"
                             noWrap
