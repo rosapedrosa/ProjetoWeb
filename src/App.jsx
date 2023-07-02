@@ -69,7 +69,7 @@ function App() {
  
 
 
-  function ajeitaData(data) {
+  function registrarData(data) {
     const mes = parseInt(data.$M) + 1
     const novaData = data.$D + "/" + mes + "/" + data.$y
     //console.log(novaData)
@@ -107,7 +107,7 @@ function App() {
               rows={4} onChange={(e) => setDescricao(e.target.value)} />
 
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker id="dataEvento" onChange={(newValue) => ajeitaData(newValue)} />
+              <DatePicker id="dataEvento" onChange={(newValue) => registrarData(newValue)} />
             </LocalizationProvider>
 
             <Select id="prioridade" label="Prioridade" onChange={(e) => setPrioridade(e.target.value)}>

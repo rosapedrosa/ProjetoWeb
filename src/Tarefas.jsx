@@ -63,9 +63,6 @@ export default function Tarefas() {
     }))
 
     useEffect(() => {
-        // Código existente para obter as tarefas
-
-        // Filtrar as tarefas com base na pesquisa
         const tarefasFiltradas = tarefas.filter(tarefa => tarefa.titulo.includes(pesquisa))
         setTarefasFiltradas(tarefasFiltradas)
     }, [tarefas, pesquisa])
